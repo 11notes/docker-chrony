@@ -11,6 +11,8 @@ RUN apk --update add chrony \
 ADD ./source/chrony.conf /chrony/etc
 ADD ./source/entrypoint.sh /
 
+RUN chmod +x /entrypoint.sh
+
 # :: Volumes
 VOLUME ["/chrony/etc", "/chrony/var", "/chrony/log"]
 
