@@ -1,5 +1,5 @@
 # :: Header
-FROM alpine:3.9
+FROM alpine:3.10
 
 # :: Run
 USER root
@@ -12,6 +12,9 @@ ADD ./source/chrony.conf /chrony/etc
 ADD ./source/entrypoint.sh /
 
 RUN chmod +x /entrypoint.sh
+
+# :: Version
+RUN echo "CI/CD{{$(chronyc --version 2>&1)}}"
 
 # :: Volumes
 VOLUME ["/chrony/etc", "/chrony/var", "/chrony/log"]
