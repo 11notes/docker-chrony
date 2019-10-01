@@ -8,10 +8,6 @@ chronyd inside an alpine docker container. Lightweight and fast.
 
 Purpose: Configuration file of chronyd
 
-/chrony/var
-
-Purpose: drift file etc
-
 /chrony/log
 
 Purpose: Log directory if activated in config
@@ -20,7 +16,6 @@ Purpose: Log directory if activated in config
 ```shell
 docker run --name chrony \
     -v volume-etc:/chrony/etc \
-    -v volume-var:/chrony/var \
     -v volume-log:/chrony/log \
     --cap-add SYS_TIME \
     -d 11notes/chrony:latest
