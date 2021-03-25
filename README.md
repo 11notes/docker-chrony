@@ -2,23 +2,11 @@
 
 chronyd inside an alpine docker container. Lightweight and fast.
 
-## Volumes
-
-/chrony/etc
-
-Purpose: Configuration file of chronyd
-
-/chrony/log
-
-Purpose: Log directory if activated in config
-
 ## Run
 ```shell
-docker run --name chrony \
-    -v volume-etc:/chrony/etc \
-    -v volume-log:/chrony/log \
+docker run --name chrony:version \
     --cap-add SYS_TIME \
-    -d 11notes/chrony:latest
+    -d 11notes/chrony:version
 ```
 
 ## Build with
