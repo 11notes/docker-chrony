@@ -1,0 +1,16 @@
+image: 11notes/chrony:4.0
+manifests:
+  - image: 11notes/chrony:amd64-4.0
+    platform:
+      architecture: amd64
+      os: linux
+  - image: 11notes/chrony:arm32v7-4.0
+    platform:
+      architecture: arm
+      os: linux
+      variant: v7
+  - image: 11notes/chrony:arm64v8-4.0
+    platform:
+      architecture: arm64
+      os: linux
+      variant: v8
