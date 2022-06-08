@@ -1,6 +1,5 @@
 # :: Header
-    FROM alpine:3.13
-
+    FROM alpine:3.16
 
 # :: Run
     # :: prepare
@@ -9,17 +8,15 @@
     # :: install
         RUN set -x; \
             apk --update --no-cache add \
-                chrony=4.0-r1;
+                chrony>=4.2-r0;
 
     # :: copy root filesystem changes
         COPY ./rootfs /
-        RUN chmod +x /usr/local/bin/*
-
 
 # :: Monitor
-    HEALTHCHECK --interval=60s --timeout=5s CMD chronyc tracking > /dev/null
-
+    RUN set -ex; chmod +x /usr/local/bin/healthcheck.sh
+    HEALTHCHECK --interval=10s --timeout=2s CMD /usr/local/bin/healthcheck.sh
 
 # :: Start
+    RUN set -ex; chmod +x /usr/local/bin/entrypoint.sh
     ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-    CMD ["chronyd", "-f", "/etc/chrony/chrony.conf", "-d"]

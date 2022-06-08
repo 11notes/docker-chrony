@@ -1,8 +1,9 @@
 #!/bin/ash
-if [ -e /run/chrony.pid ]
-then
-        rm -f /run/chrony.pid
+if [ -z "$1" ]; then
+    rm -f /run/chrony.pid
+    set -- "chronyd" \
+        -f "/etc/chrony/default.conf" \
+        -d
 fi
 
-# :: Run
 exec "$@"
