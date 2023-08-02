@@ -1,2 +1,2 @@
 #!/bin/ash
-chronyc tracking > /dev/null || exit 1
+  chronyc tracking > /dev/null || exit 1

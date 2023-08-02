@@ -1,9 +1,14 @@
 #!/bin/ash
-if [ -z "$1" ]; then
-    rm -f /run/chrony.pid
+  if [ -z "$1" ]; then
+    rm -f /chrony/run/chrony.pid
     set -- "chronyd" \
-        -f "/etc/chrony/default.conf" \
-        -d
-fi
+      -m \
+      -L 0 \
+      -f "/chrony/etc/chrony.conf" \
+      -d \
+      -u docker \
+      -U \
+      -x
+  fi
 
-exec "$@"
+  exec "$@"
