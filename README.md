@@ -1,5 +1,6 @@
-# Alpine :: Chrony
-Run Chrony based on Alpine Linux. Small, lightweight, secure and fast 🏔️
+# Alpine :: Chrony (Server)
+Run a Chrony NTP server based on Alpine Linux. Small, lightweight, secure and fast 🏔️
+
 
 ## Volumes
 * **/chrony/etc** - Directory of chrony configuration file chrony.conf
@@ -22,7 +23,7 @@ docker run --name chrony \
 * [11notes/alpine:stable](https://github.com/11notes/docker-alpine)
 
 ## Built with
-* [chrony](https://chrony-project.org/)
+* [chrony](https://chrony-project.org)
 * [Alpine Linux](https://alpinelinux.org)
 
 ## Tips
