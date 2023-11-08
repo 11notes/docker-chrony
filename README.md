@@ -10,6 +10,7 @@ Run a Chrony NTP server based on Alpine Linux. Small, lightweight, secure and fa
 ```shell
 docker run --name chrony \
   -v .../etc:/chrony/etc \
+  --cap-add SYS_TIME \
   -d 11notes/chrony:[tag]
 ```
 
