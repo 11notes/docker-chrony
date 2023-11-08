@@ -31,7 +31,7 @@
       chmod 0770 /run/chrony;
 
 # :: Monitor
-  HEALTHCHECK --interval=30s --timeout=10s CMD /usr/local/bin/healthcheck.sh
+  HEALTHCHECK CMD /usr/local/bin/healthcheck.sh || exit 1
 
 # :: Start
   USER docker
