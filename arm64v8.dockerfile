@@ -1,3 +1,6 @@
+# :: QEMU
+  FROM multiarch/qemu-user-static:x86_64-aarch64 as qemu
+
 # :: Util
   FROM alpine as util
 
@@ -8,6 +11,7 @@
 
 # :: Header
   FROM 11notes/alpine:stable
+  COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin
   COPY --from=util /util/linux/shell/elevenLogJSON /usr/local/bin
   ENV APP_ROOT=/chrony
   ENV APP_VERSION=4.5-r0
