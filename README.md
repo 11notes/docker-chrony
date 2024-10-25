@@ -1,17 +1,10 @@
 ![Banner](https://github.com/11notes/defaults/blob/main/static/img/banner.png?raw=true)
 
 # 🏔️ Alpine - Chrony
-![size](https://img.shields.io/docker/image-size/11notes/chrony/4.5?color=0eb305) ![version](https://img.shields.io/docker/v/11notes/chrony/4.5?color=eb7a09) ![pulls](https://img.shields.io/docker/pulls/11notes/chrony?color=2b75d6) ![activity](https://img.shields.io/github/commit-activity/m/11notes/docker-chrony?color=c91cb8) ![commit-last](https://img.shields.io/github/last-commit/11notes/docker-chrony?color=c91cb8) ![stars](https://img.shields.io/docker/stars/11notes/chrony?color=e6a50e)
+![size](https://img.shields.io/docker/image-size/11notes/chrony/4.5?color=0eb305) ![version](https://img.shields.io/docker/v/11notes/chrony/4.5?color=eb7a09) ![pulls](https://img.shields.io/docker/pulls/11notes/chrony?color=2b75d6)
 
 # SYNOPSIS
-Chrony as NTP time server, pure and simple, maximized for performance and security.
-
-# RUN
-```shell
-docker run --name chrony \
-  -p 123:123/udp \
-  -d 11notes/chrony:[tag]
-```
+**What can I do with this?** Run chrony as NTP time server for your network, pure and simple, maximized for performance and security.
 
 # CONFIG (EXAMPLE)
 /chrony/etc/default.conf
@@ -23,6 +16,18 @@ makestep 1 -1
 clientloglimit 268435456
 driftfile /chrony/run/drift
 allow all
+```
+
+# COMPOSE
+```yaml
+name: "chrony"
+services:
+  chown:
+    image: "11notes/chrony:4.5"
+    user: "chrony"
+    environment:
+      TZ: "Europe/Zurich"
+    restart: "always"
 ```
 
 # DEFAULT SETTINGS
@@ -39,6 +44,9 @@ allow all
 | `TZ` | [Time Zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) | |
 | `DEBUG` | Show debug information | |
 
+# SOURCE
+* [11notes/chrony:4.5](https://github.com/11notes/docker-chrony/tree/4.5)
+
 # PARENT IMAGE
 * [11notes/alpine:stable](https://hub.docker.com/r/11notes/alpine)
 
@@ -47,11 +55,9 @@ allow all
 * [alpine](https://alpinelinux.org)
 
 # TIPS
-* Only use rootless container runtime (podman, rootless docker)
-* Allow non-root ports < 1024 via `echo "net.ipv4.ip_unprivileged_port_start=53" > /etc/sysctl.d/ports.conf`
 * Use a reverse proxy like Traefik, Nginx to terminate TLS with a valid certificate
 * Use Let’s Encrypt certificates to protect your SSL endpoints
 
 # ElevenNotes<sup>™️</sup>
-This image is provided to you at your own risk. Always make backups before updating an image to a new version. Check the changelog for breaking changes.
+This image is provided to you at your own risk. Always make backups before updating an image to a new version. Check the changelog for breaking changes. You can find all my repositories on [github](https://github.com/11notes).
     

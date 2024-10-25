@@ -10,7 +10,7 @@
     git clone https://github.com/11notes/util.git;
 
 # :: Header
-  FROM 11notes/alpine:arm64v8-stable
+  FROM --platform=linux/arm64 11notes/alpine:stable
   COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin
   COPY --from=util /util/linux/shell/elevenLogJSON /usr/local/bin
   ENV APP_ROOT=/chrony

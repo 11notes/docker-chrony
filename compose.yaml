@@ -1,0 +1,8 @@
+name: "chrony"
+services:
+  chown:
+    image: "11notes/chrony:4.5"
+    user: "chrony"
+    environment:
+      TZ: "Europe/Zurich"
+    restart: "always"
