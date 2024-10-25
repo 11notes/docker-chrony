@@ -1,8 +1,12 @@
 name: "chrony"
 services:
-  chown:
+  daemon:
     image: "11notes/chrony:4.5"
-    user: "chrony"
+    container_name: "chrony"
     environment:
       TZ: "Europe/Zurich"
+    ports:
+      - "123:123/udp"
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=123
     restart: "always"

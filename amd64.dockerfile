@@ -10,6 +10,7 @@
   FROM 11notes/alpine:stable
   COPY --from=util /util/linux/shell/elevenLogJSON /usr/local/bin
   ENV APP_ROOT=/chrony
+  ENV APP_NAME="chrony"
   ENV APP_VERSION=4.5-r0
 
 # :: Run
@@ -23,9 +24,9 @@
 
   # :: install application
     RUN set -ex; \
-      apk --no-cache add \
+      apk --no-cache --update add \
         chrony=${APP_VERSION}; \
-      apk --no-cache upgrade;
+      apk --no-cache --update upgrade;
 
   # :: copy root filesystem changes and add execution rights to init scripts
     COPY ./rootfs /

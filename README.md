@@ -9,11 +9,12 @@
 # CONFIG (EXAMPLE)
 /chrony/etc/default.conf
 ```yaml
-pool ch.pool.ntp.org  iburst maxsources 5
-pool ntp.ubuntu.com   iburst maxsources 5
+pool ch.pool.ntp.org iburst maxsources 5
+pool ntp.ubuntu.com iburst maxsources 5
 maxupdateskew 10.0
 makestep 1 -1
 clientloglimit 268435456
+pidfile /chrony/run/chrony.pid
 driftfile /chrony/run/drift
 allow all
 ```
@@ -22,11 +23,15 @@ allow all
 ```yaml
 name: "chrony"
 services:
-  chown:
+  daemon:
     image: "11notes/chrony:4.5"
-    user: "chrony"
+    container_name: "chrony"
     environment:
       TZ: "Europe/Zurich"
+    ports:
+      - "123:123/udp"
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=123
     restart: "always"
 ```
 
