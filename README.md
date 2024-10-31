@@ -3,6 +3,8 @@
 # 🏔️ Alpine - Chrony
 ![size](https://img.shields.io/docker/image-size/11notes/chrony/4.5?color=0eb305) ![version](https://img.shields.io/docker/v/11notes/chrony/4.5?color=eb7a09) ![pulls](https://img.shields.io/docker/pulls/11notes/chrony?color=2b75d6)
 
+**Run your own NTP server based on chrony**
+
 # SYNOPSIS
 **What can I do with this?** Run chrony as NTP time server for your network, pure and simple, maximized for performance and security.
 
