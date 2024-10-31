@@ -8,7 +8,7 @@
 
 # :: Header
   FROM 11notes/alpine:stable
-  COPY --from=util /util/linux/shell/elevenLogJSON /usr/local/bin
+  COPY --from=util /util/docker /usr/local/bin
   ENV APP_ROOT=/chrony
   ENV APP_NAME="chrony"
   ENV APP_VERSION=4.5-r0
@@ -42,7 +42,7 @@
       chmod 0770 /run/chrony;
 
 # :: Monitor
-  HEALTHCHECK CMD /usr/local/bin/healthcheck.sh || exit 1
+HEALTHCHECK --interval=5s --timeout=2s CMD /usr/local/bin/healthcheck.sh || exit 1
 
 # :: Start
   USER docker

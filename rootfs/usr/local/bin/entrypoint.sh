@@ -1,6 +1,5 @@
 #!/bin/ash
   if [ -z "${1}" ]; then
-    elevenLogJSON info "starting ${APP_NAME} (${APP_VERSION})"
     set -- "chronyd" \
       -4 \
       -L 0 \
@@ -9,6 +8,8 @@
       -u docker \
       -U \
       -x
+
+    elevenDockerImageStart
   fi
 
   exec "$@"
