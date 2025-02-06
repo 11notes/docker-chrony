@@ -1,6 +1,6 @@
 name: "chrony"
 services:
-  daemon:
+  chrony:
     image: "11notes/chrony:4.6.1"
     container_name: "chrony"
     environment:

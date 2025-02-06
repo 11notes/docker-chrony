@@ -6,10 +6,10 @@
 **Chrony NTP server on Alpine**
 
 # SYNOPSIS 📖
-**What can I do with this?** Run chrony as NTP time server for your network, pure and simple, maximized for performance and security.
+**What can I do with this?** Run chrony as NTP server for your network, pure and simple, maximized for performance and security. If you plan to run this in production, make sure you stand up multiple NTP instances and put them behind a load balancer and use virtual IPs.
 
 # DEFAULT CONFIG 📑
-/etc/default.conf
+/chrony/etc/default.conf
 ```yaml
 pool ch.pool.ntp.org iburst maxsources 5
 pool ntp.ubuntu.com iburst maxsources 5
@@ -25,7 +25,7 @@ allow all
 ```yaml
 name: "chrony"
 services:
-  daemon:
+  chrony:
     image: "11notes/chrony:4.6.1"
     container_name: "chrony"
     environment:
