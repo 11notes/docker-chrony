@@ -9,7 +9,7 @@
       -U \
       -x
 
-    elevenDockerImageStart
+    eleven log start
   fi
 
   exec "$@"

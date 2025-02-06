@@ -1,15 +1,15 @@
 ![Banner](https://github.com/11notes/defaults/blob/main/static/img/banner.png?raw=true)
 
-# 🏔️ Alpine - Chrony
-![size](https://img.shields.io/docker/image-size/11notes/chrony/4.5?color=0eb305) ![version](https://img.shields.io/docker/v/11notes/chrony/4.5?color=eb7a09) ![pulls](https://img.shields.io/docker/pulls/11notes/chrony?color=2b75d6)
+# 🏔️ chrony on Alpine
+[<img src="https://img.shields.io/badge/github-source-blue?logo=github&color=040308">](https://github.com/11notes/docker-chrony)![size](https://img.shields.io/docker/image-size/11notes/chrony/4.6.1?color=0eb305)![version](https://img.shields.io/docker/v/11notes/chrony/4.6.1?color=eb7a09)![pulls](https://img.shields.io/docker/pulls/11notes/chrony?color=2b75d6)[<img src="https://img.shields.io/github/issues/11notes/docker-chrony?color=7842f5">](https://github.com/11notes/docker-chrony/issues)
 
-**Run your own NTP server based on chrony**
+**Chrony NTP server on Alpine**
 
-# SYNOPSIS
+# SYNOPSIS 📖
 **What can I do with this?** Run chrony as NTP time server for your network, pure and simple, maximized for performance and security.
 
-# CONFIG (EXAMPLE)
-/chrony/etc/default.conf
+# DEFAULT CONFIG 📑
+/etc/default.conf
 ```yaml
 pool ch.pool.ntp.org iburst maxsources 5
 pool ntp.ubuntu.com iburst maxsources 5
@@ -21,12 +21,12 @@ driftfile /chrony/run/drift
 allow all
 ```
 
-# COMPOSE
+# COMPOSE ✂️
 ```yaml
 name: "chrony"
 services:
   daemon:
-    image: "11notes/chrony:4.5"
+    image: "11notes/chrony:4.6.1"
     container_name: "chrony"
     environment:
       TZ: "Europe/Zurich"
@@ -37,34 +37,33 @@ services:
     restart: "always"
 ```
 
-# DEFAULT SETTINGS
+# DEFAULT SETTINGS 🗃️
 | Parameter | Value | Description |
 | --- | --- | --- |
-| `user` | docker | user docker |
-| `uid` | 1000 | user id 1000 |
-| `gid` | 1000 | group id 1000 |
+| `user` | docker | user name |
+| `uid` | 1000 | [user identifier](https://en.wikipedia.org/wiki/User_identifier) |
+| `gid` | 1000 | [group identifier](https://en.wikipedia.org/wiki/Group_identifier) |
 | `home` | /chrony | home directory of user docker |
 
-# ENVIRONMENT
+# ENVIRONMENT 📝
 | Parameter | Value | Default |
 | --- | --- | --- |
 | `TZ` | [Time Zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) | |
-| `DEBUG` | Show debug information | |
+| `DEBUG` | Show debug messages from image **not** app | |
 
-# SOURCE
-* [11notes/chrony:4.5](https://github.com/11notes/docker-chrony/tree/4.5)
+# SOURCE 💾
+* [11notes/chrony](https://github.com/11notes/docker-chrony)
 
-# PARENT IMAGE
+# PARENT IMAGE 🏛️
 * [11notes/alpine:stable](https://hub.docker.com/r/11notes/alpine)
 
-# BUILT WITH
+# BUILT WITH 🧰
 * [chrony](https://chrony-project.org)
 * [alpine](https://alpinelinux.org)
 
-# TIPS
-* Use a reverse proxy like Traefik, Nginx to terminate TLS with a valid certificate
+# TIPS 📌
+* Use a reverse proxy like Traefik, Nginx, HAproxy to terminate TLS with a valid certificate
 * Use Let’s Encrypt certificates to protect your SSL endpoints
-
-# ElevenNotes<sup>™️</sup>
-This image is provided to you at your own risk. Always make backups before updating an image to a new version. Check the changelog for breaking changes. You can find all my repositories on [github](https://github.com/11notes).
-    
+  
+# ElevenNotes™️
+This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-chrony/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-chrony/issues), thanks . You can find all my repositories on [github](https://github.com/11notes?tab=repositories).

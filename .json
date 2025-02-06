@@ -1,0 +1,10 @@
+{
+  "image":"11notes/chrony",
+  "description":"Chrony NTP server on Alpine",
+  "name":"chrony",
+  "version":"4.6.1",
+  "root":"/chrony",
+  
+  "stable":"4.6.1",
+  "parent":"11notes/alpine:stable"
+}

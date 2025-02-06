@@ -1,7 +1,7 @@
 name: "chrony"
 services:
   daemon:
-    image: "11notes/chrony:4.5"
+    image: "11notes/chrony:4.6.1"
     container_name: "chrony"
     environment:
       TZ: "Europe/Zurich"
