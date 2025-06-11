@@ -15,6 +15,9 @@
       "layers": [
         "11notes/distroless"
       ]
+    },
+    "comparison": {
+      "image": "dockurr/chrony:latest"
     }
   }
 }

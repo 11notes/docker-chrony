@@ -10,15 +10,16 @@ ${{ github:> }}* This image contains a proper health check that verifies the app
 ${{ github:> }}* This image works as read-only, most other images need to write files to the image filesystem
 ${{ github:> }}* This image is a lot smaller than most other images
 
+${{ content_comparison }}
+
 If you value security, simplicity and the ability to interact with the maintainer and developer of an image. Using my images is a great start in that direction.
 
 ${{ title_volumes }}
 * **${{ json_root }}/etc** - Directory of your config
 
-${{ TITLE:CONFIG }}
-${{ ROOT }}/etc/default.conf
-```yaml
-${{ INCLUDE:/rootfs/chrony/etc/default.conf }}
+${{ title_config }}
+```sh
+${{ include: ./rootfs/chrony/etc/default.conf }}
 ```
 
 ${{ content_compose }}
