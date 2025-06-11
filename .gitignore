@@ -1,2 +1,4 @@
+# default
 maintain/
-project*
+node_modules/
+.env

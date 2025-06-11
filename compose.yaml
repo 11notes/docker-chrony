@@ -1,12 +1,19 @@
 name: "chrony"
 services:
-  chrony:
-    image: "11notes/chrony:4.6.1"
-    container_name: "chrony"
+  app:
+    image: "11notes/chrony:4.7"
+    read_only: true
     environment:
       TZ: "Europe/Zurich"
+    volumes:
+      - "etc:/chrony/etc"
     ports:
       - "123:123/udp"
+    tmpfs:
+      - "/run/chrony:mode=0770,uid=1000,gid=1000"
     sysctls:
       - net.ipv4.ip_unprivileged_port_start=123
     restart: "always"
+
+volumes:
+  etc:
