@@ -9,6 +9,11 @@
     "description": "Run chrony rootless and distroless, secure by default!",
     "built": {
       "chrony": "https://gitlab.com/chrony/chrony"
-    }
+    },
+    "distroless": {
+      "layers": [
+        "11notes/distroless"
+      ]
+    },
   }
 }
