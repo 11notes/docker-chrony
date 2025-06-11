@@ -19,15 +19,31 @@ Run chrony rootless and distroless, secure by default!
 >* This image works as read-only, most other images need to write files to the image filesystem
 >* This image is a lot smaller than most other images
 
+# COMPARISON 🏁
+Below you find a comparison between this image and the most used or original one.
+
+| **image** | 11notes/chrony:4.7 | dockurr/chrony:latest |
+| ---: | :---: | :---: |
+| **image size on disk** | 1.22MB | 15.4MB |
+| **process UID/GID** | 1000/1000 | 0/0 |
+| **distroless?** | ✅ | ❌ |
+| **rootless?** | ✅ | ❌ |
+
+
 If you value security, simplicity and the ability to interact with the maintainer and developer of an image. Using my images is a great start in that direction.
 
 # VOLUMES 📁
 * **/chrony/etc** - Directory of your config
 
-${{ TITLE:CONFIG }}
-${{ ROOT }}/etc/default.conf
-```yaml
-${{ INCLUDE:/rootfs/chrony/etc/default.conf }}
+# DEFAULT CONFIG 📑
+```sh
+pool ch.pool.ntp.org iburst maxsources 5
+pool ntp.ubuntu.com iburst maxsources 5
+maxupdateskew 10.0
+makestep 1 -1
+clientloglimit 268435456
+driftfile /run/chrony/drift
+allow all
 ```
 
 # COMPOSE ✂️
@@ -104,4 +120,4 @@ docker pull quay.io/11notes/chrony:4.7
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-chrony/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-chrony/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-chrony/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 12.06.2025, 00:48:18 (CET)*
+*created 12.06.2025, 01:25:40 (CET)*
