@@ -10,9 +10,11 @@ services:
     ports:
       - "123:123/udp"
     tmpfs:
+      # tmpfs volume because of read_only: true
       - "/run/chrony:mode=0770,uid=1000,gid=1000"
     sysctls:
-      - net.ipv4.ip_unprivileged_port_start=123
+      # allow rootless container to access ports < 1024
+      net.ipv4.ip_unprivileged_port_start: 123
     restart: "always"
 
 volumes:
