@@ -9,14 +9,13 @@
 
   # :: FOREIGN IMAGES
   FROM 11notes/distroless AS distroless
-  FROM 11notes/util AS util
+  FROM 11notes/util:bin AS util-bin
 
 # ╔═════════════════════════════════════════════════════╗
 # ║                       BUILD                         ║
 # ╚═════════════════════════════════════════════════════╝
   FROM alpine AS build
-  COPY --from=util /usr/local/bin /usr/local/bin
-
+  COPY --from=util-bin / /
   ARG TARGETPLATFORM \
       TARGETOS \
       TARGETARCH \
@@ -62,9 +61,7 @@
   RUN set -ex; \
     mkdir -p /distroless/usr/local/bin; \
     for BIN in ${BUILD_BIN}; do \
-      eleven checkStatic ${BIN}; \
-      eleven strip ${BIN}; \
-      cp ${BIN} /distroless/usr/local/bin; \
+      eleven distroless ${BIN}; \
     done;
 
 # ╔═════════════════════════════════════════════════════╗
