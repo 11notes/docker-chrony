@@ -16,7 +16,7 @@
       ]
     },
     "comparison": {
-      "image": "dockurr/chrony:latest"
+      "image": "dockurr/chrony"
     }
   }
 }
