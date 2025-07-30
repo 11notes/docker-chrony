@@ -7,6 +7,7 @@
   },
   "readme": {
     "description": "Run chrony rootless and distroless, secure by default!",
+    "introduction": "chrony is a versatile implementation of the Network Time Protocol (NTP). It can synchronise the system clock with NTP servers, reference clocks e.g. GPS receiver), and manual input using wristwatch and keyboard.",
     "built": {
       "chrony": "https://gitlab.com/chrony/chrony"
     },
