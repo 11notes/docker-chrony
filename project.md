@@ -1,4 +1,4 @@
-${{ content_synopsis }} Run chrony as an NTP server for your network, pure and simple, maximized for performance and security. If you plan to run this in production, make sure you stand up multiple NTP instances and put them behind a load balancer and use virtual IPs.
+${{ content_synopsis }} Run chrony as an NTP server for your network, pure and simple, maximized for performance and security. If you plan to run this in production, make sure you stand up multiple NTP instances and put them behind a load balancer and use virtual IPs. Pair this image with a GPS USB antenna and you can run your own Stratum 1 NTP for your entire network.
 
 ${{ content_uvp }} Good question! Because ...
 
