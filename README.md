@@ -5,6 +5,10 @@
 
 Run chrony rootless and distroless, secure by default!
 
+# INTRODUCTION 📢
+
+chrony is a versatile implementation of the Network Time Protocol (NTP). It can synchronise the system clock with NTP servers, reference clocks e.g. GPS receiver), and manual input using wristwatch and keyboard.
+
 # SYNOPSIS 📖
 **What can I do with this?** Run chrony as an NTP server for your network, pure and simple, maximized for performance and security. If you plan to run this in production, make sure you stand up multiple NTP instances and put them behind a load balancer and use virtual IPs. Pair this image with a GPS USB antenna and you can run your own Stratum 1 NTP for your entire network.
 
@@ -124,4 +128,4 @@ docker pull quay.io/11notes/chrony:4.7
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-chrony/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-chrony/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-chrony/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 30.07.2025, 21:53:31 (CET)*
+*created 30.07.2025, 21:58:14 (CET)*
