@@ -1,7 +1,7 @@
 name: "chrony"
 services:
   app:
-    image: "11notes/chrony:4.8"
+    image: "11notes/chrony:4.8.0"
     read_only: true
     environment:
       TZ: "Europe/Zurich"
