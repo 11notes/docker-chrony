@@ -42,18 +42,18 @@ jobs:
         uses: actions/github-script@62c3794a3eb6788d9a2a72b219504732c0c9a298
         with:
           script: |
-            const semverExceptions = function(s){
-              switch('${{ github.event.repository.name }}'){
-                case 'docker-chrony': core.warning(`semver exception found fors chrony ${typeof(s)} ${s}, setting version to Major.Minor`); return(s.split('.').slice(0, 2).join('.'));
-              }
-            }
-
             (async()=>{
               const { Buffer } = require('node:buffer');
               const { inspect } = require('node:util');
               const { existsSync, readFileSync, writeFileSync } = require('node:fs');
               const { resolve } = require('node:path');
-              const semver = require('semver')
+              const semver = require('semver');
+
+              const semverExceptions = (s) => {
+                switch('${{ github.event.repository.name }}'){
+                  case 'docker-chrony': core.warning(`semver exception found fors chrony ${typeof(s)} ${s}, setting version to Major.Minor`); return(s.split('.').slice(0, 2).join('.'));
+                }
+              }
 
               // defaults
               const json = `${{ toJSON(github.event.inputs) }}`;
