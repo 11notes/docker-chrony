@@ -1,13 +1,13 @@
 # ╔═════════════════════════════════════════════════════╗
 # ║                       SETUP                         ║
 # ╚═════════════════════════════════════════════════════╝
-  # GLOBAL
+# GLOBAL
   ARG APP_UID=1000 \
       APP_GID=1000 \
       BUILD_ROOT="/chrony" \
       BUILD_BIN="/chrony/chronyd /chrony/chronyc"
 
-  # :: FOREIGN IMAGES
+# :: FOREIGN IMAGES
   FROM 11notes/distroless AS distroless
   FROM 11notes/util:bin AS util-bin
 
