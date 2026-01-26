@@ -98,8 +98,8 @@ jobs:
               }
 
               // semver
-              const latest = semverExceptions(semver.valid(semver.coerce(job.inputs.version)));
-              const current = semverExceptions(semver.valid(semver.coerce(job.json.semver.version)));
+              const latest = semverExceptions(semver.valid(semver.coerce(job.inputs.version)).toString());
+              const current = semverExceptions(semver.valid(semver.coerce(job.json.semver.version)).toString());
               const tag = semver.valid(semver.coerce(job.inputs.tag));
               const checks = {latestTagExists:true};
 
