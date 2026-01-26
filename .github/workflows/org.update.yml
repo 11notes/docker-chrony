@@ -43,10 +43,10 @@ jobs:
         with:
           script: |
             const semverExceptions = function(b){
-              const s = `${b}`;
               const repo = '${{ github.event.repository.name }}';
+              const s = b.toString();
               switch(true){
-                case /chrony$/i.test(repo): return(s.split('.').slice(0, 2).join('.'));
+                case /chrony$/i.test(repo): core.warning(`semver exception found for chrony, setting version to Major.Minor`); return(s.split('.').slice(0, 2).join('.'));
               }
             }
 
