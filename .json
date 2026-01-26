@@ -3,7 +3,7 @@
   "name": "chrony",
   "root": "/chrony",
   "semver": {
-    "version": "4.8.0"
+    "version": "4.8"
   },
   "readme": {
     "description": "run chrony rootless and distroless.",
