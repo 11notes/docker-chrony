@@ -51,8 +51,9 @@ jobs:
 
               const semverExceptions = (s) => {
                 switch('${{ github.event.repository.name }}'){
-                  case 'docker-chrony': core.warning(`semver exception found for chrony ${s}, setting version to major.minor`); return(s.split('.').slice(0, 2).join('.'));
+                  case 'docker-chrony': core.warning(`semver exception found for chrony version ${s}, setting version to major.minor`); return(s.split('.').slice(0, 2).join('.'));
                 }
+                return(s);
               }
 
               // defaults
