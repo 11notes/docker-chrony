@@ -1,0 +1,46 @@
+name: run
+
+on:
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'which job to run'
+        type: string
+        required: false
+
+jobs:
+  # ╔═════════════════════════════════════════════════════╗
+  # ║                                                     ║
+  # ║                                                     ║
+  # ║            CHECK FOR AVAILABLE UPDATES              ║
+  # ║                                                     ║
+  # ║                                                     ║
+  # ╚═════════════════════════════════════════════════════╝
+  update:
+    if: ${{ github.event.inputs.job == 'update' }}
+    runs-on: ubuntu-latest
+
+    permissions:
+      actions: read
+      contents: write
+
+    steps:
+      - name: checkout all tags
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: 'master'
+          fetch-depth: 0
+
+      - name: get latest version and last tag
+        run: |
+          export LATEST_VERSION=$(curl -s https://gitlab.com/api/v4/projects/chrony%2Fchrony/repository/tags | jq --raw-output '.[0].name')
+          export LATEST_TAG=$(git describe --abbrev=0 --tags `git rev-list --tags --max-count=1` | sed 's|v||')
+          echo "WORKFLOW_UPDATE_BASE64JSON=$(echo '{"version":"'${LATEST_VERSION}'", "tag":"'${LATEST_TAG}'", "unraid":true, "nobody":true}' | base64 -w 0)" >> "${GITHUB_ENV}"
+
+      - name: call org.update
+        uses: benc-uk/workflow-dispatch@7a027648b88c2413826b6ddd6c76114894dc5ec4 #v1.3.1
+        with:
+          wait-for-completion: false
+          workflow: org.update.yml
+          token: "${{ secrets.REPOSITORY_TOKEN }}"
+          inputs: '{ "etc":"${{ env.WORKFLOW_UPDATE_BASE64JSON }}" }'
