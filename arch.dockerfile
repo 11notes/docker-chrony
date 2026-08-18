@@ -40,7 +40,8 @@
       build-base;
 
   RUN set -ex; \
-    git clone https://gitlab.com/chrony/chrony.git -b ${APP_VERSION};
+    MAJOR_MINOR=$(echo "${APP_VERSION}" | awk -F '.' '{print $1"."$2}'); \
+    git clone https://gitlab.com/chrony/chrony.git -b ${MAJOR_MINOR};
 
   RUN set -ex; \
     cd ${BUILD_ROOT}; \
