@@ -31,20 +31,26 @@ jobs:
           ref: 'master'
           fetch-depth: 0
 
-      - name: get latest version and last tag
+      - name: get latest version and build
         run: |
-          export LATEST_VERSION=$(curl -s https://gitlab.com/api/v4/projects/chrony%2Fchrony/repository/tags | jq --raw-output '.[0].name')
-          if echo "${LATEST_VERSION}" | grep -q "pre"; then
+          LATEST=$(curl -s https://gitlab.com/api/v4/projects/chrony%2Fchrony/repository/tags | jq --raw-output '.[0].name')
+          if echo "${LATEST}" | grep -q "pre"; then
             echo "version is pre-release, skipping"
           else
-            export LATEST_TAG=$(git describe --abbrev=0 --tags `git rev-list --tags --max-count=1` | sed 's|v||')
-            echo "WORKFLOW_UPDATE_BASE64JSON=$(echo '{"version":"'${LATEST_VERSION}'", "tag":"'${LATEST_TAG}'", "unraid":true, "nobody":true}' | base64 -w 0)" >> "${GITHUB_ENV}"
+            echo "LATEST_VERSION=${LATEST}" >> "${GITHUB_ENV}"
           fi
 
+      - name: check if updated is needed
+        uses: 11notes/actions/update@v1 # v1
+        with:
+          latest: ${{ env.LATEST_VERSION }}
+          build: ${{ env.LATEST_BUILD }}
+
       - name: call org.update
+        if: env.ACTIONS_UPDATE == 'true'
         uses: benc-uk/workflow-dispatch@7a027648b88c2413826b6ddd6c76114894dc5ec4 # v1.3.1
         with:
           wait-for-completion: false
           workflow: org.update.yml
           token: "${{ secrets.REPOSITORY_TOKEN }}"
-          inputs: '{ "etc":"${{ env.WORKFLOW_UPDATE_BASE64JSON }}" }'
+          inputs: '{ "etc":"${{ env.ACTIONS_UPDATE_BASE64JSON }}" }'
