@@ -34,7 +34,7 @@ jobs:
       - name: get latest version and last tag
         run: |
           export LATEST_VERSION=$(curl -s https://gitlab.com/api/v4/projects/chrony%2Fchrony/repository/tags | jq --raw-output '.[0].name')
-          if echo "${LATEST_VERSION}" | grep -q "-pre"; then
+          if echo "${LATEST_VERSION}" | grep -q "pre"; then
             echo "version is pre-release, skipping"
           else
             export LATEST_TAG=$(git describe --abbrev=0 --tags `git rev-list --tags --max-count=1` | sed 's|v||')
