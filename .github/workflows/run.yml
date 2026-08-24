@@ -37,14 +37,15 @@ jobs:
           if echo "${LATEST}" | grep -q "pre"; then
             echo "version is pre-release, skipping"
           else
+            echo "UPDATE=true" >> "${GITHUB_ENV}"
             echo "LATEST_VERSION=${LATEST}" >> "${GITHUB_ENV}"
           fi
 
       - name: check if updated is needed
+        if: env.UPDATE == 'true'
         uses: 11notes/actions/update@v1 # v1
         with:
           latest: ${{ env.LATEST_VERSION }}
-          build: ${{ env.LATEST_BUILD }}
 
       - name: call org.update
         if: env.ACTIONS_UPDATE == 'true'
