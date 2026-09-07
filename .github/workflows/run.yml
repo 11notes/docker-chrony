@@ -33,16 +33,9 @@ jobs:
 
       - name: get latest version and build
         run: |
-          LATEST=$(curl -s https://gitlab.com/api/v4/projects/chrony%2Fchrony/repository/tags | jq --raw-output '.[0].name')
-          if echo "${LATEST}" | grep -q "pre"; then
-            echo "version is pre-release, skipping"
-          else
-            echo "UPDATE=true" >> "${GITHUB_ENV}"
-            echo "LATEST_VERSION=${LATEST}" >> "${GITHUB_ENV}"
-          fi
+          echo "LATEST_VERSION=$(curl -s https://gitlab.com/api/v4/projects/chrony%2Fchrony/repository/tags | jq --raw-output '.[0].name').0" >> "${GITHUB_ENV}"
 
       - name: check if updated is needed
-        if: env.UPDATE == 'true'
         uses: 11notes/actions/update@v1 # v1
         with:
           latest: ${{ env.LATEST_VERSION }}

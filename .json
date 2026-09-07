@@ -19,5 +19,7 @@
     "comparison": {
       "image": "dockurr/chrony"
     }
-  }
+  },
+  "unraid": true,
+  "nobody": true
 }
